@@ -26,25 +26,25 @@ for (; ;)
                     {
                         Console.WriteLine("Insert folder path");
                         string FolderPath = Console.ReadLine();
+                        Console.WriteLine("Enter the date");
+                        DateTime LastAccessDate = Convert.ToDateTime(Console.ReadLine());
                         if (!string.IsNullOrWhiteSpace(FolderPath))
                         {
                             if (Directory.Exists(FolderPath))
                             {
                                 List<FolderReportDto> folderReportDtos = new List<FolderReportDto>();
+                                List<FolderReportSize> foldersLessThans = new List<FolderReportSize>();
                                 foreach (string FilePath in Directory.GetFiles(FolderPath))
                                 {
-                                    DateTime LastAccessDate = File.GetLastAccessTime(FilePath);
-                                    Console.WriteLine("Enter the date");
-                                    DateTime lastAccessDate = Convert.ToDateTime(Console.ReadLine());
+                                    DateTime LastAccessDateOfFile = File.GetLastAccessTime(FilePath);
 
-                                    string FileExtention = Path.GetExtension(FilePath);
-                                    if ((FilePath > File.LastAccessDate);
+                                    if ((LastAccessDate > LastAccessDate))
                                     {
-                                        FolderReportDto.Where(FilePath > LastAccessDate);
+                                        folderReportDtos.(FilePath > LastAccessDateOfFile);
                                     }
                                     else
                                     {
-                                        FolderReportDto.Where(FilePath < LastAccessDate);
+                                        FolderReportDto.Where(FilePath < LastAccessDateOfFile);
                                     }
                                 }
                             }
@@ -80,7 +80,11 @@ for (; ;)
 }
 public class FolderReportDto
 {
-    public string ExtentionType { get; set; }
-    public int ExtentionCount { get; set; }
     public List<FolderReportDto> Folders { get; set; }
+}
+
+public class FolderReportSize
+{
+    public List<FolderMoreThan> FolderMoreThans { get; set; }
+    public List<FolderLessThan> FolderLessThans { get; set; }
 }
